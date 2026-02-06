@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rose Day Surprise for Deepu 🌹</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: linear-gradient(135deg, #ff4b5c, #8b0000);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 24px;
+    padding: 25px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    animation: pop 1.3s ease;
+}
+
+h1 {
+    margin: 10px 0;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #8b0000;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.gallery {
+    display: none;
+    margin-top: 15px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 16px;
+    margin-top: 12px;
+}
+
+.rose {
+    position: fixed;
+    top: -30px;
+    font-size: 22px;
+    animation: fall linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); }
+}
+
+@keyframes pop {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>🌹 Happy Rose Day 🌹</h1>
+    <p>Dear <b>Deepu</b> ❤️<br>This surprise is only for you.</p>
+
+    <button onclick="openSurprise()">Open Surprise 🎁</button>
+
+    <div class="gallery" id="gallery">
+        
+        <img src="panda.png" alt="Rose">
+        <p>🌹 One rose, one smile, endless memories 🌹</p>
+    </div>
+</div>
+
+<script>
+function openSurprise() {
+    document.getElementById("gallery").style.display = "block";
+}
+
+for (let i = 0; i < 25; i++) {
+    const r = document.createElement("div");
+    r.className = "rose";
+    r.innerHTML = "🌹";
+    r.style.left = Math.random() * 100 + "vw";
+    r.style.animationDuration = (3 + Math.random() * 5) + "s";
+    document.body.appendChild(r);
+}
+</script>
+
+</body>
+</html>
