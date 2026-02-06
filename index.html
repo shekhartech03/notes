@@ -12,18 +12,22 @@ body {
     background: linear-gradient(135deg, #ff4b5c, #8b0000);
     color: white;
     min-height: 100vh;
+    padding: 16px;
+}
+
+/* Safe center without blocking scroll */
+.wrapper {
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    padding: 15px;
 }
 
 .card {
     background: rgba(255,255,255,0.15);
     backdrop-filter: blur(12px);
     border-radius: 24px;
-    padding: 22px;
+    padding: 20px;
     width: 100%;
     max-width: 420px;
     text-align: center;
@@ -33,16 +37,16 @@ body {
 
 h1 {
     margin: 10px 0;
-    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-size: clamp(1.4rem, 5vw, 2rem);
 }
 
 p {
-    font-size: clamp(0.95rem, 3vw, 1.1rem);
+    font-size: clamp(0.95rem, 4vw, 1.1rem);
 }
 
 button {
     margin-top: 15px;
-    padding: 12px 28px;
+    padding: 12px 26px;
     border: none;
     border-radius: 30px;
     background: white;
@@ -65,22 +69,24 @@ button {
 }
 
 #typingText {
-    margin-top: 12px;
-    font-size: 1.1rem;
+    margin-top: 14px;
+    font-size: clamp(1rem, 4vw, 1.2rem);
     font-weight: bold;
-    min-height: 1.4em;
+    word-wrap: break-word;
 }
 
+/* Falling roses */
 .rose {
     position: fixed;
     top: -30px;
     font-size: 22px;
     animation: fall linear infinite;
     opacity: 0.8;
+    pointer-events: none;
 }
 
 @keyframes fall {
-    to { transform: translateY(110vh) rotate(360deg); }
+    to { transform: translateY(120vh) rotate(360deg); }
 }
 
 @keyframes pop {
@@ -92,17 +98,19 @@ button {
 
 <body>
 
-<div class="card">
-    <h1>🌹 Happy Rose Day 🌹</h1>
-    <p>Dear <b>Deepu</b> ❤️<br>This surprise is only for you.</p>
+<div class="wrapper">
+  <div class="card">
+      <h1>🌹 Happy Rose Day 🌹</h1>
+      <p>Dear <b>Deepu</b> ❤️<br>This surprise is only for you.</p>
 
-    <button id="surpriseBtn" onclick="openSurprise()">Open Surprise 🎁</button>
+      <button id="surpriseBtn" onclick="openSurprise()">Open Surprise 🎁</button>
 
-    <div class="gallery" id="gallery">
-        <img src="panda.png" alt="Rose Panda">
-        <p>🌹 One rose, one smile, endless memories 🌹</p>
-        <div id="typingText"></div>
-    </div>
+      <div class="gallery" id="gallery">
+          <img src="panda.png" alt="Rose Panda">
+          <p>🌹 One rose, one smile, endless memories 🌹</p>
+          <div id="typingText"></div>
+      </div>
+  </div>
 </div>
 
 <script>
@@ -112,27 +120,29 @@ function openSurprise() {
     startTyping();
 }
 
+/* Typing effect */
 const message = "I love you Deepu my girl ❤️";
 let index = 0;
 
 function startTyping() {
-    const typingEl = document.getElementById("typingText");
-    typingEl.innerHTML = "";
+    const el = document.getElementById("typingText");
+    el.innerHTML = "";
     index = 0;
 
-    const interval = setInterval(() => {
-        typingEl.innerHTML += message.charAt(index);
+    const typing = setInterval(() => {
+        el.innerHTML += message.charAt(index);
         index++;
-        if (index === message.length) clearInterval(interval);
+        if (index === message.length) clearInterval(typing);
     }, 90);
 }
 
+/* Falling roses */
 for (let i = 0; i < 25; i++) {
     const r = document.createElement("div");
     r.className = "rose";
     r.innerHTML = "🌹";
     r.style.left = Math.random() * 100 + "vw";
-    r.style.animationDuration = (3 + Math.random() * 5) + "s";
+    r.style.animationDuration = (4 + Math.random() * 5) + "s";
     document.body.appendChild(r);
 }
 </script>
